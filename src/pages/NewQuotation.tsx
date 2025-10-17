@@ -26,7 +26,7 @@ const NewQuotation = () => {
     client: "",
     item: "",
     source: "google_ads" as "google_ads" | "whatsapp" | "mail" | "other",
-    status: "pending" as "pending" | "quoted" | "confirmed" | "delivered" | "cancelled",
+    status: "pending" as "pending" | "quoted" | "confirmed" | "cancelled" | "hold",
     remarks: "",
   });
 
@@ -152,7 +152,7 @@ const NewQuotation = () => {
                 <Label htmlFor="status">Status *</Label>
                 <Select
                   value={formData.status}
-                  onValueChange={(value: "pending" | "quoted" | "confirmed" | "delivered" | "cancelled") =>
+                  onValueChange={(value: "pending" | "quoted" | "confirmed" | "cancelled" | "hold") =>
                     setFormData({ ...formData, status: value })
                   }
                 >
@@ -163,8 +163,8 @@ const NewQuotation = () => {
                     <SelectItem value="pending">Pending</SelectItem>
                     <SelectItem value="quoted">Quoted</SelectItem>
                     <SelectItem value="confirmed">Confirmed</SelectItem>
-                    <SelectItem value="delivered">Delivered</SelectItem>
                     <SelectItem value="cancelled">Cancelled</SelectItem>
+                    <SelectItem value="hold">Hold</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

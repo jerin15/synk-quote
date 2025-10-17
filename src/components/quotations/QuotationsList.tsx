@@ -115,7 +115,7 @@ export const QuotationsList = ({ onUpdate }: QuotationsListProps) => {
       pending: { className: "bg-warning/10 text-warning border-warning/20" },
       quoted: { className: "bg-primary/10 text-primary border-primary/20" },
       confirmed: { className: "bg-success/10 text-success border-success/20" },
-      delivered: { className: "bg-accent/10 text-accent border-accent/20" },
+      hold: { className: "bg-accent/10 text-accent border-accent/20" },
       cancelled: { className: "bg-destructive/10 text-destructive border-destructive/20" },
     };
 
@@ -209,7 +209,7 @@ export const QuotationsList = ({ onUpdate }: QuotationsListProps) => {
               <SelectItem value="pending">Pending</SelectItem>
               <SelectItem value="quoted">Quoted</SelectItem>
               <SelectItem value="confirmed">Confirmed</SelectItem>
-              <SelectItem value="delivered">Delivered</SelectItem>
+              <SelectItem value="hold">Hold</SelectItem>
               <SelectItem value="cancelled">Cancelled</SelectItem>
             </SelectContent>
           </Select>
