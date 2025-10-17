@@ -71,7 +71,7 @@ export type Database = {
           sl_number: number
           source: Database["public"]["Enums"]["quotation_source"]
           status: Database["public"]["Enums"]["quotation_status"]
-          time_in: string
+          time_in: string | null
           time_out: string | null
           updated_at: string
         }
@@ -87,7 +87,7 @@ export type Database = {
           sl_number: number
           source: Database["public"]["Enums"]["quotation_source"]
           status?: Database["public"]["Enums"]["quotation_status"]
-          time_in: string
+          time_in?: string | null
           time_out?: string | null
           updated_at?: string
         }
@@ -103,7 +103,7 @@ export type Database = {
           sl_number?: number
           source?: Database["public"]["Enums"]["quotation_source"]
           status?: Database["public"]["Enums"]["quotation_status"]
-          time_in?: string
+          time_in?: string | null
           time_out?: string | null
           updated_at?: string
         }
