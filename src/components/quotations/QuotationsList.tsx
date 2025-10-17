@@ -4,7 +4,8 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Search, Edit, Trash2, ExternalLink } from "lucide-react";
+import { Search, Edit, Trash2, ExternalLink, Download, FileDown } from "lucide-react";
+import { exportToCSV, exportToPDF } from "@/lib/exportUtils";
 import { toast } from "sonner";
 import { format } from "date-fns";
 import {
@@ -33,6 +34,8 @@ interface Quotation {
   source: string;
   status: string;
   remarks: string | null;
+  quote_number: string | null;
+  quoted_date: string | null;
 }
 
 interface QuotationsListProps {
@@ -132,17 +135,59 @@ export const QuotationsList = ({ onUpdate }: QuotationsListProps) => {
     );
   };
 
+  const handleExportCSV = () => {
+    const exportData = filteredQuotations.map((q) => ({
+      sl_number: q.sl_number,
+      date: q.date,
+      client: q.client,
+      item: q.item,
+      source: q.source,
+      status: q.status,
+      quote_number: q.quote_number,
+      quoted_date: q.quoted_date,
+      remarks: q.remarks,
+    }));
+    exportToCSV(exportData, "quotations");
+    toast.success("CSV exported successfully");
+  };
+
+  const handleExportPDF = () => {
+    const exportData = filteredQuotations.map((q) => ({
+      sl_number: q.sl_number,
+      date: q.date,
+      client: q.client,
+      item: q.item,
+      source: q.source,
+      status: q.status,
+      quote_number: q.quote_number,
+      quoted_date: q.quoted_date,
+      remarks: q.remarks,
+    }));
+    exportToPDF(exportData, "quotations");
+    toast.success("PDF exported successfully");
+  };
+
   return (
     <Card className="p-6">
       <div className="mb-6 space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold text-foreground">Recent Quotations</h2>
-          <Link to="/analytics">
-            <Button variant="outline" size="sm" className="gap-2">
-              <ExternalLink className="h-4 w-4" />
-              View Analytics
+          <div className="flex gap-2">
+            <Button variant="outline" size="sm" className="gap-2" onClick={handleExportCSV}>
+              <FileDown className="h-4 w-4" />
+              Export CSV
             </Button>
-          </Link>
+            <Button variant="outline" size="sm" className="gap-2" onClick={handleExportPDF}>
+              <Download className="h-4 w-4" />
+              Export PDF
+            </Button>
+            <Link to="/analytics">
+              <Button variant="outline" size="sm" className="gap-2">
+                <ExternalLink className="h-4 w-4" />
+                View Analytics
+              </Button>
+            </Link>
+          </div>
         </div>
 
         <div className="flex gap-4">
