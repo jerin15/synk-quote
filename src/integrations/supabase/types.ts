@@ -162,12 +162,7 @@ export type Database = {
     }
     Enums: {
       quotation_source: "google_ads" | "whatsapp" | "mail" | "other"
-      quotation_status:
-        | "pending"
-        | "quoted"
-        | "confirmed"
-        | "cancelled"
-        | "hold"
+      quotation_status: "pending" | "quoted" | "approved" | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -296,7 +291,7 @@ export const Constants = {
   public: {
     Enums: {
       quotation_source: ["google_ads", "whatsapp", "mail", "other"],
-      quotation_status: ["pending", "quoted", "confirmed", "cancelled", "hold"],
+      quotation_status: ["pending", "quoted", "approved", "cancelled"],
     },
   },
 } as const

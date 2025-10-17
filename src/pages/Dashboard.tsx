@@ -36,14 +36,14 @@ const Dashboard = () => {
 
       if (quotations && purchaseOrders) {
         const pending = quotations.filter((q) => q.status === "pending").length;
-        const confirmed = quotations.filter((q) => q.status === "confirmed").length;
+        const approved = quotations.filter((q) => q.status === "approved").length;
         const total = quotations.length;
-        const conversion = total > 0 ? (confirmed / total) * 100 : 0;
+        const conversion = total > 0 ? (approved / total) * 100 : 0;
 
         setStats({
           totalQuotations: total,
           pendingQuotations: pending,
-          confirmedQuotations: confirmed,
+          confirmedQuotations: approved,
           totalPurchaseOrders: purchaseOrders.length,
           conversionRate: Math.round(conversion),
         });
@@ -70,7 +70,7 @@ const Dashboard = () => {
       color: "warning",
     },
     {
-      title: "Confirmed",
+      title: "Approved",
       value: stats.confirmedQuotations,
       icon: CheckCircle2,
       color: "success",
